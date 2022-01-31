@@ -8,8 +8,8 @@
         xmlns:decanat="clr-namespace:AniRateV1.Models"
         xmlns:cmd="clr-namespace:AniRateV1.Infrostructure.Commands"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="AniRate" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="aspf"/>
+        
     </Grid>
 </Window>
