@@ -9,7 +9,26 @@
         xmlns:cmd="clr-namespace:AniRateV1.Infrostructure.Commands"
         mc:Ignorable="d"
         Title="AniRate" Height="450" Width="800">
-    <Grid>
-        <TextBlock Text="Hello" />
-    </Grid>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл"/>
+            <MenuItem Header="Выход"/>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="Status" MinWidth="150" MaxWidth="300" />
+            </StatusBarItem>
+            <StatusBarItem>
+                <ProgressBar Width="120" Height="14" Value="30" />
+            </StatusBarItem>
+        </StatusBar>
+        <TabControl>
+            <TabItem Header="Тайтлы1">
+                
+            </TabItem>
+            <TabItem Header="Тайтлы2">
+
+            </TabItem>
+        </TabControl>
+    </DockPanel>
 </Window>
