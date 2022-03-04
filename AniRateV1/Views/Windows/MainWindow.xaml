@@ -14,8 +14,6 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     
-
-    
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл"/>
@@ -66,13 +64,24 @@
                             </ListBox.ItemsPanel>
                             <ListBox.ItemTemplate>
                                 <DataTemplate DataType="models:AnimeTitle">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Name}" />
+                                    <StackPanel Orientation="Horizontal" >
+                                        <TextBlock Text="{Binding Name}" Margin="3 2 3 2" />
+                                        <TextBlock Text="{Binding Description}" Margin="3 2 3 2"/>
+                                        <TextBlock Text="{Binding Rating}" Margin="15 2 3 2" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </DockPanel>
+                    <GroupBox Grid.Row="1" Grid.Column="1">
+                        <GroupBox.Header>
+                            <TextBlock Text="Anime info" />
+                        </GroupBox.Header>
+                        <DataTemplate>
+                            
+                        </DataTemplate>
+                    </GroupBox>
+                    <ContentControl Content="{Binding SelectedAnimeTitle}" />
                 </Grid>
             </TabItem>
             <TabItem Header="Тайтлы2">

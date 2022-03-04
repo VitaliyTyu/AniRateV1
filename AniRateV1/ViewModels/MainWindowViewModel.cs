@@ -27,7 +27,7 @@ namespace AniRateV1.ViewModels
 
         public MainWindowViewModel()
         {
-            var titles = Enumerable.Range(1, 20).Select(i => new AnimeTitle
+            var titles = Enumerable.Range(1, 100).Select(i => new AnimeTitle
             {
                 Name = $"Тайтл {i}",
                 Description = $"Description {i}",
