@@ -97,7 +97,7 @@
                                 
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <!--<VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />-->
+                                        <!--<VirtualizingStackdasdasdsadasdasadPanel IsItemsHost="True" Orientation="Horizontal" />-->
                                         <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
