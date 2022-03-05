@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:AniRateV1"
         xmlns:vm="clr-namespace:AniRateV1.ViewModels"
         xmlns:models="clr-namespace:AniRateV1.Models"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:cmd="clr-namespace:AniRateV1.Infrostructure.Commands"
         mc:Ignorable="d"
         Title="AniRate" Height="750" Width="1200">
@@ -42,46 +43,78 @@
                     <TextBlock Grid.Row="0" Grid.Column="0" 
                                Text="Profile" FontSize="30" 
                                FontWeight="Bold" TextAlignment="Center"/>
-                    <DockPanel Grid.Column="0" Grid.Row="1">
-                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-                            <TextBlock Text="img" Margin="5 5"/>
-                            <TextBlock Text="info" Margin="5 5"/>
-                        </StackPanel>
-                        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-                            <TextBlock Text="img" Margin="5 5"/>
-                            <TextBlock Text="info" Margin="5 5"/>
-                        </StackPanel>
-                        <ListBox ItemsSource="{Binding AnimeTitles}"
-                                 SelectedItem="{Binding SelectedAnimeTitle}"
+                    
+                    <GroupBox Grid.Column="0" Grid.Row="1" Header="Коллекции">
+                        <DockPanel>
+                            <DockPanel.Resources>
+                                <CollectionViewSource x:Key="AnimeCollections"
+                                                      Source="{Binding AnimeCollections}" />
+                            </DockPanel.Resources>
+                            <DockPanel DockPanel.Dock="Top" Margin="0,3">
+                                <fa:FontAwesome Height="12" Icon="Solid_Search" Margin="3,0"/>
+                                <TextBox Text="Поиск коллекций"/>
+                            </DockPanel>
+                            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+                                <TextBlock Text="img" Margin="5 5"/>
+                                <TextBlock Text="info" Margin="5 5"/>
+                            </StackPanel>
+                            <ListBox ItemsSource="{Binding Source={StaticResource AnimeCollections}}"
+                                 SelectedItem="{Binding SelectedAnimeCollection}"
                                  SelectedIndex="0"
                                      VirtualizingPanel.IsContainerVirtualizable="True"
                                      VirtualizingPanel.IsVirtualizing="True"
                                      VirtualizingPanel.VirtualizationMode="Recycling">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VirtualizingStackPanel />
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate DataType="models:AnimeTitle">
-                                    <StackPanel Orientation="Horizontal" >
-                                        <TextBlock Text="{Binding Name}" Margin="3 2 3 2" />
-                                        <TextBlock Text="{Binding Description}" Margin="3 2 3 2"/>
-                                        <TextBlock Text="{Binding Rating}" Margin="15 2 3 2" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </DockPanel>
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="models:AnimeCollection">
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Text="{Binding Name}" Margin="3 2 3 2" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DockPanel>
+                    </GroupBox>
+                    
                     <GroupBox Grid.Row="1" Grid.Column="1">
                         <GroupBox.Header>
-                            <TextBlock Text="Anime info" />
+                            <TextBlock Text="{Binding SelectedAnimeCollection.Name}" />
                         </GroupBox.Header>
-                        <DataTemplate>
-                            
-                        </DataTemplate>
+                        <DockPanel>
+                            <DockPanel DockPanel.Dock="Top" Margin="0,3">
+                                <fa:FontAwesome Height="12" Icon="Solid_Search" Margin="3,0"/>
+                                <TextBox Text="Поиск"/>
+                            </DockPanel>
+                            <ListBox ItemsSource="{Binding SelectedAnimeCollection.AnimeTitles}"
+                                     VirtualizingPanel.IsContainerVirtualizable="True"
+                                     VirtualizingPanel.IsVirtualizing="True"
+                                     VirtualizingPanel.VirtualizationMode="Recycling"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <!--<VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />-->
+                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="models:AnimeTitle">
+                                        <StackPanel Orientation="Vertical" Margin="5" Height="100" >
+                                            <TextBlock Text="{Binding Name}" Margin="3 2 3 2" />
+                                            <TextBlock Text="{Binding Rating}" Margin="3 2 3 2" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+
+                        </DockPanel>
                     </GroupBox>
-                    <ContentControl Content="{Binding SelectedAnimeTitle}" />
+                    
                 </Grid>
             </TabItem>
             <TabItem Header="Тайтлы2">

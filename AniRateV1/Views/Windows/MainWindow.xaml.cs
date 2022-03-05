@@ -24,5 +24,6 @@ namespace AniRateV1
         {
             InitializeComponent();
         }
+
     }
 }

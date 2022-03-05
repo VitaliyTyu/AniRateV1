@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace AniRateV1.Models
 {
-    internal class AnimeTitle
+    internal class AnimeCollection
     {
         public string? Name { get; set; }
-        public string? Description { get; set; }
-        public int? Rating { get; set; }
+        public IList<AnimeTitle>? AnimeTitles { get; set; } // IList для того, чтобы в поле могла быть, ObservableCollection
     }
 }
