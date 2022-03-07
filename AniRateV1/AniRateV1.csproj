@@ -11,4 +11,8 @@
     <PackageReference Include="FontAwesome5" Version="2.1.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\DataTemplates\" />
+  </ItemGroup>
+
 </Project>

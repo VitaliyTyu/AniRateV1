@@ -16,6 +16,20 @@ namespace AniRateV1.ViewModels
     {
         public static Random Rnd { get; set; } = new Random();
         public ObservableCollection<AnimeCollection> AnimeCollections { get; }
+        public ExactAnimeTitleViewModel ExactAnimeTitleVM { get; set; }
+        public CollectionViewModel CollectionVM { get; set; }
+
+
+        #region Fields
+
+        #region CurrentView : object - VM для текущего UserControl'a
+        private object _CurrentView;
+        public object CurrentView
+        {
+            get => _CurrentView;
+            set => Set(ref _CurrentView, value);
+        }
+        #endregion
 
         #region _SelecteAnimeTitle : AnimeTitle - выбранный аниме тайтл
         private AnimeTitle _SelectedAnimeTitle;
@@ -77,6 +91,35 @@ namespace AniRateV1.ViewModels
         }
         #endregion
 
+        #endregion
+
+
+        #region Commands
+
+
+        #region ExactAnimeTitleCommand
+        public ICommand ExactAnimeTitleCommand { get; }
+        private bool CanExactAnimeTitleCommandExecute(object p) => true;
+        private void OnExactAnimeTitleCommandExecuted(object p)
+        {
+            CurrentView = ExactAnimeTitleVM;
+        }
+        #endregion
+
+        #region CollectionCommand
+        public ICommand CollectionCommand { get; }
+        private bool CanCollectionCommandExecute(object p) => true;
+        private void OnCollectionCommandExecuted(object p)
+        {
+            CurrentView = new CollectionViewModel(SelectedAnimeCollection);
+            //CurrentView = CollectionVM;
+        }
+        #endregion
+
+
+
+        #endregion
+
         public MainWindowViewModel()
         {
             var titles = Enumerable.Range(1, 100).Select(i => new AnimeTitle
@@ -93,6 +136,18 @@ namespace AniRateV1.ViewModels
             });
 
             AnimeCollections = new ObservableCollection<AnimeCollection>(collections);
+
+
+
+            CollectionVM = new CollectionViewModel(SelectedAnimeCollection);
+            //CollectionVM = new CollectionViewModel();
+            CurrentView = CollectionVM;
+
+            ExactAnimeTitleVM = new ExactAnimeTitleViewModel();
+
+            ExactAnimeTitleCommand = new LambdaCommand(OnExactAnimeTitleCommandExecuted, CanExactAnimeTitleCommandExecute);
+            CollectionCommand = new LambdaCommand(OnCollectionCommandExecuted, CanCollectionCommandExecute);
+
         }
     }
 }

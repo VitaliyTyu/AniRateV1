@@ -22,10 +22,10 @@
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
-                <TextBlock Text="Status" MinWidth="150" MaxWidth="300" />
+                <Button Content="Collection" Command="{Binding CollectionCommand}"/>
             </StatusBarItem>
             <StatusBarItem>
-                <ProgressBar Width="120" Height="14" Value="30" />
+                <Button Content="Anime" Command="{Binding ExactAnimeTitleCommand}"/>
             </StatusBarItem>
         </StatusBar>
         <TabControl>
@@ -89,28 +89,16 @@
                                 <fa:FontAwesome Height="12" Icon="Solid_Search" Margin="3,0"/>
                                 <TextBox Text="Поиск"/>
                             </DockPanel>
-                            <ListBox ItemsSource="{Binding SelectedAnimeCollection.AnimeTitles}"
-                                     VirtualizingPanel.IsContainerVirtualizable="True"
-                                     VirtualizingPanel.IsVirtualizing="True"
-                                     VirtualizingPanel.VirtualizationMode="Recycling"
-                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                                
-                                <ListBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <!--<VirtualizingStackPanel IsItemsHost="True" Orientation="Horizontal" />-->
-                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
-                                    </ItemsPanelTemplate>
-                                </ListBox.ItemsPanel>
-                                
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate DataType="models:AnimeTitle">
-                                        <StackPanel Orientation="Vertical" Margin="5" Height="100" >
-                                            <TextBlock Text="{Binding Name}" Margin="3 2 3 2" />
-                                            <TextBlock Text="{Binding Rating}" Margin="3 2 3 2" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
+
+                            <TextBlock DockPanel.Dock="Bottom"
+                                       Text="{Binding SelectedAnimeTitle.Name}" Margin="3 2 3 2">
+
+                            </TextBlock>
+
+                            <ContentControl Margin="5"
+                                            Content="{Binding CurrentView}"/>
+
+                           
 
                         </DockPanel>
                     </GroupBox>
