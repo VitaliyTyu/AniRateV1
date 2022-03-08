@@ -9,6 +9,7 @@ using System.Windows.Input;
 using AniRateV1.Infrostructure.Commands;
 using AniRateV1.Models;
 using AniRateV1.ViewModels.Base;
+    using AniRateV1.Views.Windows;
 
 namespace AniRateV1.ViewModels
 {
@@ -116,7 +117,57 @@ namespace AniRateV1.ViewModels
         }
         #endregion
 
+        #region CreateNewCollection
+        public ICommand CreateNewCollection { get; }
+        private bool CanCreateNewCollectionExecute(object p) => true;
+        private void OnCreateNewCollectionExecuted(object p)
+        {
+            MenuAddCollection menuAddCollection = new MenuAddCollection();
+            var titles = Enumerable.Range(1, 100).Select(i => new AnimeTitle
+            {
+                Name = $"Тайтл {Rnd.Next(1000)}",
+                Description = $"Description {i}",
+                Rating = i,
+            });
+            if (menuAddCollection.ShowDialog() == true)
+            {
+                var collections = new AnimeCollection
+                {
+                    Name = menuAddCollection.NewCollectionName,
+                    AnimeTitles = new ObservableCollection<AnimeTitle>(titles),
+                };
+                AnimeCollections.Add(collections);
+            }
+                        
+            //var i = AnimeCollections.Count + 1;
+            //var titles = Enumerable.Range(1, 100).Select(i => new AnimeTitle
+            //{
+            //    Name = $"Тайтл {Rnd.Next(1000)}",
+            //    Description = $"Description {i}",
+            //    Rating = i,
+            //});
+            //var collections = new AnimeCollection
+            //{
+            //    Name = $"Коллекция {i}",
+            //    AnimeTitles = new ObservableCollection<AnimeTitle>(titles),
+            //};
+            //AnimeCollections.Add(collections);
+        }
+        #endregion
 
+       
+        #region DeleteAnimeCollection
+        public ICommand DeleteAnimeCollection { get; }
+        private bool CanDeleteAnimeCollectionExecute(object p) => p is AnimeCollection group && AnimeCollections.Contains(group);
+        private void OnDeleteAnimeCollectionExecuted(object p)
+        {
+            if (!(p is AnimeCollection  group)) return;
+            var group_index = AnimeCollections.IndexOf(group);
+            AnimeCollections.Remove(group);
+            if (group_index < AnimeCollections.Count)
+                SelectedAnimeCollection = AnimeCollections[group_index];
+        }
+        #endregion
 
         #endregion
 
@@ -129,13 +180,15 @@ namespace AniRateV1.ViewModels
                 Rating = i,
             });
 
-            var collections = Enumerable.Range(1, 100).Select(i => new AnimeCollection
+            var collections = Enumerable.Range(1, 10).Select(i => new AnimeCollection
             {
                 Name = $"Коллекция {i}",
                 AnimeTitles = new ObservableCollection<AnimeTitle>(titles),
             });
 
             AnimeCollections = new ObservableCollection<AnimeCollection>(collections);
+
+
 
 
 
@@ -147,7 +200,10 @@ namespace AniRateV1.ViewModels
 
             ExactAnimeTitleCommand = new LambdaCommand(OnExactAnimeTitleCommandExecuted, CanExactAnimeTitleCommandExecute);
             CollectionCommand = new LambdaCommand(OnCollectionCommandExecuted, CanCollectionCommandExecute);
-
+            CreateNewCollection = new LambdaCommand(OnCreateNewCollectionExecuted, CanCreateNewCollectionExecute);
+            DeleteAnimeCollection = new LambdaCommand(OnDeleteAnimeCollectionExecuted, CanDeleteAnimeCollectionExecute);
         }
+
     }
+
 }

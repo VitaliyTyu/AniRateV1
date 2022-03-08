@@ -55,8 +55,15 @@
                                 <TextBox Text="Поиск коллекций"/>
                             </DockPanel>
                             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-                                <TextBlock Text="img" Margin="5 5"/>
-                                <TextBlock Text="info" Margin="5 5"/>
+                                <Button Content="Добавить" 
+                                        Command="{Binding CreateNewCollection}"
+                                        Width="100"
+                                        Margin="30 0 0 0" />
+                                <Button Content="Удалить"
+                                        Command="{Binding DeleteAnimeCollection}"
+                                        CommandParameter="{Binding SelectedAnimeCollection}"
+                                        Width="100"
+                                        Margin="60 0 0 0"/>
                             </StackPanel>
                             <ListBox ItemsSource="{Binding Source={StaticResource AnimeCollections}}"
                                  SelectedItem="{Binding SelectedAnimeCollection}"
