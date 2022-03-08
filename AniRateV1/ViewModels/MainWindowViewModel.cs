@@ -140,7 +140,7 @@ namespace AniRateV1.ViewModels
 
 
             CollectionVM = new CollectionViewModel(SelectedAnimeCollection);
-            //CollectionVM = new CollectionViewModel();
+            ////CollectionVM = new CollectionViewModel();
             CurrentView = CollectionVM;
 
             ExactAnimeTitleVM = new ExactAnimeTitleViewModel();
