@@ -8,13 +8,13 @@
     <Application.Resources>
         <ResourceDictionary>
             
-            <DataTemplate DataType="{x:Type vm:ExactAnimeTitleViewModel}">
+            <!--<DataTemplate DataType="{x:Type vm:ExactAnimeTitleViewModel}">
                 <userCtrl:ExactAnimeTitleView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type vm:CollectionViewModel}">
                 <userCtrl:CollectionView />
-            </DataTemplate>
+            </DataTemplate>-->
 
         </ResourceDictionary>
     </Application.Resources>

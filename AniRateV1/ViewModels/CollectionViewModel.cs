@@ -7,21 +7,21 @@ namespace AniRateV1.ViewModels
 {
     internal class CollectionViewModel : ViewModel
     {
-        public AnimeCollection AnimeCollection { get; set; }
+        //public AnimeCollection AnimeCollection { get; set; }
 
 
-        #region _SelecteAnimeTitle : AnimeTitle - выбранный аниме тайтл
-        private AnimeTitle _SelectedAnimeTitle;
-        public AnimeTitle SelectedAnimeTitle
-        {
-            get => _SelectedAnimeTitle;
-            set => Set(ref _SelectedAnimeTitle, value);
-        }
-        #endregion
+        //#region _SelecteAnimeTitle : AnimeTitle - выбранный аниме тайтл
+        //private AnimeTitle _SelectedAnimeTitle;
+        //public AnimeTitle SelectedAnimeTitle
+        //{
+        //    get => _SelectedAnimeTitle;
+        //    set => Set(ref _SelectedAnimeTitle, value);
+        //}
+        //#endregion
 
-        public CollectionViewModel(AnimeCollection selectedAnimeCollection)
-        {
-            AnimeCollection = selectedAnimeCollection;
-        }
+        //public CollectionViewModel(AnimeCollection selectedAnimeCollection)
+        //{
+        //    AnimeCollection = selectedAnimeCollection;
+        //}
     }
 }
