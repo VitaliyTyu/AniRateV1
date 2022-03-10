@@ -76,7 +76,8 @@
                                      VirtualizingPanel.IsContainerVirtualizable="True"
                                      VirtualizingPanel.IsVirtualizing="True"
                                      VirtualizingPanel.VirtualizationMode="Recycling"
-                                     HorizontalContentAlignment="Stretch">
+                                     HorizontalContentAlignment="Stretch"
+                                     BorderThickness="0">
                                         
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -104,7 +105,6 @@
                                 <fa:FontAwesome Height="12" Icon="Solid_Search" Margin="3,0"/>
                                 <TextBox    VerticalContentAlignment="Center"
                                             HorizontalAlignment="Left"
-                                            Margin="5"
                                             Grid.Column="1"
                                             Style="{StaticResource ModernTextBox}"/>
                             </DockPanel>
@@ -118,7 +118,7 @@
                                             Content="{Binding CurrentViewModel}"/>-->
 
                             <Grid>
-                                <userCtrl:CollectionView Margin="10" Visibility="{Binding AnimeCollectionVisibility}"/>
+                                <userCtrl:CollectionView Visibility="{Binding AnimeCollectionVisibility}"/>
                                 <userCtrl:ExactAnimeTitleView Margin="10" Visibility="{Binding ExactAnimeTitleVisibility}"/>
                             </Grid>
 

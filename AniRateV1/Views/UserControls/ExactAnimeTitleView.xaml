@@ -30,7 +30,9 @@
             
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name}"/>
+                    <Grid>
+                        <TextBlock Text="{Binding Name}" FontSize="16"/>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
             
