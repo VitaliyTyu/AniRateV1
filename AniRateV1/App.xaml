@@ -19,8 +19,10 @@
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Recources\Dictionaries\SearchBoxTheme.xaml" />
+                <ResourceDictionary Source="Recources\Dictionaries\CollectionButtonTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
+            
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

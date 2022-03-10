@@ -24,7 +24,10 @@ namespace AniRateV1
         {
             InitializeComponent();
         }
-        
 
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
