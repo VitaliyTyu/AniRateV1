@@ -16,19 +16,33 @@ namespace AniRateV1.ViewModels
     internal class MainWindowViewModel : ViewModel
     {
         public static Random Rnd { get; set; } = new Random();
-        public ObservableCollection<AnimeCollection> AnimeCollections { get; }
+        //public ObservableCollection<AnimeCollection> AnimeCollections { get; }
         public ExactAnimeTitleViewModel ExactAnimeTitleVM { get; set; }
         public CollectionViewModel CollectionVM { get; set; }
 
 
         #region Fields
 
-        //#region CurrentView : object - VM для текущего UserControl'a
-        //private object _CurrentViewModel;
-        //public object CurrentViewModel
+        #region AnimeCollections : ObservableCollection<AnimeCollection>
+        private ObservableCollection<AnimeCollection> _AnimeCollections;
+        public ObservableCollection<AnimeCollection> AnimeCollections
+        {
+            get => _AnimeCollections;
+            set => Set(ref _AnimeCollections, value);
+        }
+        #endregion
+
+
+        //#region ExactAnimeCollection : ObservableCollection<AnimeCollection>
+        //private AnimeCollection _ExactAnimeCollection;
+        //public AnimeCollection ExactAnimeCollection
         //{
-        //    get => _CurrentViewModel;
-        //    set => Set(ref _CurrentViewModel, value);
+        //    get => _ExactAnimeCollection;
+        //    set
+        //    {
+        //        var selectedItems = AnimeCollections.Where(x => x.IsSelected).Count();
+        //        Set(ref _ExactAnimeCollection, value);
+        //    }
         //}
         //#endregion
 
@@ -115,6 +129,20 @@ namespace AniRateV1.ViewModels
 
         #region Commands
 
+        #region AddAnimeToManyCollections
+        public ICommand AddAnimeToManyCollections { get; }
+        private bool CanAddAnimeToManyCollectionsExecute(object p) => true;
+        private void OnAddAnimeToManyCollectionsExecuted(object p)
+        {
+            foreach (var collection in AnimeCollections)
+            {
+                if (collection.IsSelected && SelectedAnimeTitle != null && !collection.AnimeTitles.Contains(SelectedAnimeTitle))
+                {
+                    collection.AnimeTitles.Add(SelectedAnimeTitle);
+                }
+            }
+        }
+        #endregion
 
         #region ExactAnimeTitleCommand
         public ICommand ExactAnimeTitleCommand { get; }
@@ -181,7 +209,6 @@ namespace AniRateV1.ViewModels
         }
         #endregion
 
-       
         #region DeleteAnimeCollection
         public ICommand DeleteAnimeCollection { get; }
         private bool CanDeleteAnimeCollectionExecute(object p) => p is AnimeCollection group && AnimeCollections.Contains(group);
@@ -229,6 +256,7 @@ namespace AniRateV1.ViewModels
             CollectionCommand = new LambdaCommand(OnCollectionCommandExecuted, CanCollectionCommandExecute);
             CreateNewCollection = new LambdaCommand(OnCreateNewCollectionExecuted, CanCreateNewCollectionExecute);
             DeleteAnimeCollection = new LambdaCommand(OnDeleteAnimeCollectionExecuted, CanDeleteAnimeCollectionExecute);
+            AddAnimeToManyCollections = new LambdaCommand(OnAddAnimeToManyCollectionsExecuted, CanAddAnimeToManyCollectionsExecute);
         }
 
     }

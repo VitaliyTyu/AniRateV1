@@ -6,8 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AniRateV1.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Background="Orange">
+             d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid d:DataContext="{d:DesignInstance {x:Type vm:MainWindowViewModel}}">
         <ListBox ItemsSource="{Binding SelectedAnimeCollection.AnimeTitles}"
@@ -26,13 +25,6 @@
 
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="models:AnimeTitle">
-                    <!--<StackPanel Orientation="Vertical" Margin="5" Height="100" >
-                        <TextBlock Text="{Binding Name}" Margin="3 2 3 2" />
-                        <TextBlock Text="{Binding Rating}" Margin="3 2 3 2" />
-                        <StackPanel.InputBindings>
-                            <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.ExactAnimeTitleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
-                        </StackPanel.InputBindings>
-                    </StackPanel>-->
                     <StackPanel Orientation="Vertical" Margin="5" Height="300" >
                         <Button Command="{Binding DataContext.ExactAnimeTitleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}" Height="300" Width="170">
                             <Grid ShowGridLines="True">

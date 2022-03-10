@@ -6,9 +6,39 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AniRateV1.Views.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Background="Green">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid d:DataContext="{d:DesignInstance {x:Type vm:MainWindowViewModel}}">
-        <TextBlock Text="{Binding SelectedAnimeTitle.Name}" />
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Text="{Binding SelectedAnimeTitle.Name}" FontSize="40" Grid.Row="0" Grid.Column="0"/>
+        <TextBlock Text="{Binding SelectedAnimeTitle.Rating}" FontSize="40" Grid.Row="1" Grid.Column="0"/>
+        <Button Content="Добавить в коллекцию" FontSize="25" Grid.Column="1" Grid.Row="0" Command="{Binding AddAnimeToManyCollections}"/>
+        
+        <ListBox x:Name="ChooseingCollectionsListBox" 
+                 SelectedItem="{Binding Path=ExactAnimeCollection,UpdateSourceTrigger=PropertyChanged}" 
+                 ItemsSource="{Binding AnimeCollections, NotifyOnSourceUpdated=True}"
+                 SelectionMode="Multiple"
+                 BorderThickness="0"
+                 Grid.Column="1" Grid.Row="1">
+            
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="IsSelected" Value="{Binding Mode=TwoWay, Path=IsSelected}"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
     </Grid>
 </UserControl>

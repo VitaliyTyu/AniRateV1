@@ -69,13 +69,14 @@
                                         Width="100"
                                         Margin="60 0 0 0"/>
                             </StackPanel>
+                            
                             <ListBox ItemsSource="{Binding Source={StaticResource AnimeCollections}}"
                                  SelectedItem="{Binding SelectedAnimeCollection}"
                                  SelectedIndex="0"
                                      VirtualizingPanel.IsContainerVirtualizable="True"
                                      VirtualizingPanel.IsVirtualizing="True"
                                      VirtualizingPanel.VirtualizationMode="Recycling"
-                                     HorizontalContentAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged">
+                                     HorizontalContentAlignment="Stretch">
                                         
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -85,23 +86,11 @@
 
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="models:AnimeCollection">
-                                        <!--<StackPanel Orientation="Horizontal" >
-                                            <TextBlock Text="{Binding Name}" Margin="3 2 3 2" />-->
-                                        <!--<StackPanel.InputBindings>
-                                                <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.CollectionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}" />
-
-                                            </StackPanel.InputBindings>
-                                        </StackPanel>-->
-
                                         <Grid>
-
                                             <Button Content="{Binding Name}" Style="{StaticResource NewGameButtonStyle}" HorizontalAlignment="Stretch" Command="{Binding DataContext.CollectionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding}" Height="100" />
-
                                         </Grid>
-
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
-
                             </ListBox>
                         </DockPanel>
                     </GroupBox>
