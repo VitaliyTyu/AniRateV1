@@ -16,6 +16,12 @@
                 <userCtrl:CollectionView />
             </DataTemplate>-->
 
+            
+            
+            
+            
+            
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
