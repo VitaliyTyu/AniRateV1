@@ -51,8 +51,8 @@
 
 
                                 <TextBlock Text="{Binding Name}" Grid.Row="1" FontSize="35" VerticalAlignment="Center" Padding="5"/>
-                                <TextBlock Text="{Binding Rating}" Grid.Row="2" FontSize="25" Margin="0 0 20 0" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="5"/>
-                                <TextBlock Text="Рейтинг: " Grid.Row="2" FontSize="25" Margin="5 0 0 0" VerticalAlignment="Center" Padding="5"/>
+                                <TextBlock Text="{Binding Rating, StringFormat=Рейтинг: {0}}"  Grid.Row="2" FontSize="25" Margin="0 0 20 0" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="5"/>
+                                
                             </Grid>
 
                         </Button>

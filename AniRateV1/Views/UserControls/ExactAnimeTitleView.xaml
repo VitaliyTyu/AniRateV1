@@ -7,8 +7,56 @@
              xmlns:local="clr-namespace:AniRateV1.Views.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="Green">
+             >
+   
     <Grid d:DataContext="{d:DesignInstance {x:Type vm:MainWindowViewModel}}">
-        <TextBlock Text="{Binding SelectedAnimeTitle.Name}" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding SelectedAnimeTitle.Name}" Margin="20 20 0 0 " FontSize="20" Grid.Column="0" Grid.Row="0"/>
+        <Border x:Name="NewBorder"  BorderBrush="#FF000000" BorderThickness="1"  Grid.Column="0" Grid.Row="0" Margin="20,55,0,10">
+            <Image  Stretch="Fill" HorizontalAlignment="Center"  Source="E:\HSE_HERNYA\курсаач\AnimeWindow\Images\kak.jpg" Width="{Binding ElementName=NewBorder, Path=Width}"/>
+        </Border>
+
+        <Expander Header="Добавить в коллекцию:" Grid.Column="0" Margin="20,12,571,11" Grid.ColumnSpan="2" Grid.Row="1">
+            <ScrollViewer>
+                <StackPanel>
+                    <RadioButton>Коллекция</RadioButton>
+                    <RadioButton>Коллекция</RadioButton>
+                    <RadioButton>Коллекция</RadioButton>
+                    <RadioButton>Коллекция</RadioButton>
+                    <RadioButton>Коллекция</RadioButton>
+                    <RadioButton>Коллекция</RadioButton>
+                    <RadioButton>Коллекция</RadioButton>
+                    <RadioButton>Коллекция</RadioButton>
+                    <RadioButton>Коллекция</RadioButton>
+                    <RadioButton>Коллекция</RadioButton>
+                    <RadioButton>Коллекция</RadioButton>
+                    <RadioButton>Коллекция</RadioButton>
+                </StackPanel>
+            </ScrollViewer>
+        </Expander>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <TextBlock Text="Тип" Margin="20 40 0 0"/>
+            <TextBlock Text="Жанры" Margin="20 20 0 0"/>
+            <TextBlock Text="Год" Margin="20 20 0 0"/>
+            <TextBlock Text="{Binding SelectedAnimeTitle.Rating, StringFormat=Рейтинг: {0}}" Margin="20 20 0 0"/>
+            <TextBlock Text="Описание" Margin="20 20 0 0"/>
+            <Border Margin="20 5 20 10"  BorderBrush="#FF000000" BorderThickness="1" Height="107"  >
+                <TextBlock Text="Само описание" Margin="0,5,0,4"  />
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <TextBlock Text="Комментарий" Margin="20 20 0 0"/>
+            <TextBox Text="Сам комментарий" Margin="20 5 20 10" Height="79" />
+        </StackPanel>
+
+
     </Grid>
 </UserControl>
