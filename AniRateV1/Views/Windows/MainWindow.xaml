@@ -52,7 +52,9 @@
                             </DockPanel.Resources>
                             <DockPanel DockPanel.Dock="Top" Margin="0,3">
                                 <fa:FontAwesome Height="12" Icon="Solid_Search" Margin="3,0"/>
-                                <TextBox Text="Поиск коллекций"/>
+                                <TextBox   HorizontalAlignment="Left"
+                                           Margin="5 0 0 0"
+                                           Style="{StaticResource ModernTextBox}"/>
                             </DockPanel>
                             <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
                                 <Button Content="Добавить" 
@@ -94,7 +96,11 @@
                         <DockPanel>
                             <DockPanel DockPanel.Dock="Top" Margin="0,3">
                                 <fa:FontAwesome Height="12" Icon="Solid_Search" Margin="3,0"/>
-                                <TextBox Text="Поиск"/>
+                                <TextBox    VerticalContentAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="5"
+                                            Grid.Column="1"
+                                            Style="{StaticResource ModernTextBox}"/>
                             </DockPanel>
 
                             <TextBlock DockPanel.Dock="Bottom"

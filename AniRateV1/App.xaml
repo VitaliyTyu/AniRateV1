@@ -15,7 +15,10 @@
             <DataTemplate DataType="{x:Type vm:CollectionViewModel}">
                 <userCtrl:CollectionView />
             </DataTemplate>
-
+           
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Views/Theme/SearchBoxTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
