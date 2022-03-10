@@ -16,7 +16,7 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    
+
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл"/>
@@ -45,7 +45,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="0" 
                                Text="Profile" FontSize="30" 
                                FontWeight="Bold" TextAlignment="Center"/>
-                    
+
                     <GroupBox Grid.Column="0" Grid.Row="1" Header="Коллекции">
                         <DockPanel>
                             <DockPanel.Resources>
@@ -74,35 +74,38 @@
                                  SelectedIndex="0"
                                      VirtualizingPanel.IsContainerVirtualizable="True"
                                      VirtualizingPanel.IsVirtualizing="True"
-                                     VirtualizingPanel.VirtualizationMode="Recycling">
-                                
+                                     VirtualizingPanel.VirtualizationMode="Recycling"
+                                     HorizontalContentAlignment="Stretch" SelectionChanged="ListBox_SelectionChanged">
+                                        
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <VirtualizingStackPanel />
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
-                                
+
                                 <ListBox.ItemTemplate>
                                     <DataTemplate DataType="models:AnimeCollection">
                                         <!--<StackPanel Orientation="Horizontal" >
                                             <TextBlock Text="{Binding Name}" Margin="3 2 3 2" />-->
-                                            <!--<StackPanel.InputBindings>
+                                        <!--<StackPanel.InputBindings>
                                                 <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.CollectionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}" />
 
                                             </StackPanel.InputBindings>
                                         </StackPanel>-->
-                                        
-                                        <StackPanel Orientation="Horizontal" >
-                                            <Button Content="{Binding Name}" Command="{Binding DataContext.CollectionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding}"/>
-                                        </StackPanel>
+
+                                        <Grid>
+
+                                            <Button Content="{Binding Name}" Style="{StaticResource NewGameButtonStyle}" HorizontalAlignment="Stretch" Command="{Binding DataContext.CollectionCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding}" Height="100" />
+
+                                        </Grid>
 
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
-                                
+
                             </ListBox>
                         </DockPanel>
                     </GroupBox>
-                    
+
                     <GroupBox Grid.Row="1" Grid.Column="1">
                         <GroupBox.Header>
                             <TextBlock Text="{Binding SelectedAnimeCollection.Name}" />
@@ -129,11 +132,11 @@
                                 <userCtrl:CollectionView Margin="10" Visibility="{Binding AnimeCollectionVisibility}"/>
                                 <userCtrl:ExactAnimeTitleView Margin="10" Visibility="{Binding ExactAnimeTitleVisibility}"/>
                             </Grid>
-                           
+
 
                         </DockPanel>
                     </GroupBox>
-                    
+
                 </Grid>
             </TabItem>
             <TabItem Header="Тайтлы2">

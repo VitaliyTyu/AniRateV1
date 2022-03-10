@@ -33,8 +33,29 @@
                             <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.ExactAnimeTitleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" />
                         </StackPanel.InputBindings>
                     </StackPanel>-->
-                    <StackPanel Orientation="Vertical" Margin="5" Height="100" >
-                        <Button Content="{Binding Name}" Command="{Binding DataContext.ExactAnimeTitleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}"/>
+                    <StackPanel Orientation="Vertical" Margin="5" Height="300" >
+                        <Button Command="{Binding DataContext.ExactAnimeTitleCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding}" Height="300" Width="170">
+                            <Grid ShowGridLines="True">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="180"/>
+                                    <RowDefinition Height="70"/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+                                <Image
+                                    Stretch="Fill" HorizontalAlignment="Center" >
+                                    <Image.Source>
+                                        <BitmapImage UriSource="../../infrostructure\images\image1.jpg"  />
+                                    </Image.Source>
+                                </Image>
+
+
+                                <TextBlock Text="{Binding Name}" Grid.Row="1" FontSize="35" VerticalAlignment="Center" Padding="5"/>
+                                <TextBlock Text="{Binding Rating}" Grid.Row="2" FontSize="25" Margin="0 0 20 0" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="5"/>
+                                <TextBlock Text="Рейтинг: " Grid.Row="2" FontSize="25" Margin="5 0 0 0" VerticalAlignment="Center" Padding="5"/>
+                            </Grid>
+
+                        </Button>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
