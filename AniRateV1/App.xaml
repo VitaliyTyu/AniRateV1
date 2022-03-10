@@ -16,12 +16,11 @@
                 <userCtrl:CollectionView />
             </DataTemplate>-->
 
-            
-            
-            
-            
-            
-            
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Recources\Dictionaries\SearchBoxTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
