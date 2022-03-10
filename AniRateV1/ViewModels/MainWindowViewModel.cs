@@ -23,16 +23,34 @@ namespace AniRateV1.ViewModels
 
         #region Fields
 
-        #region CurrentView : object - VM для текущего UserControl'a
-        private object _CurrentView;
-        public object CurrentView
+        //#region CurrentView : object - VM для текущего UserControl'a
+        //private object _CurrentViewModel;
+        //public object CurrentViewModel
+        //{
+        //    get => _CurrentViewModel;
+        //    set => Set(ref _CurrentViewModel, value);
+        //}
+        //#endregion
+
+        #region AnimeCollectionVisibility : Visibility
+        private Visibility _AnimeCollectionVisibility;
+        public Visibility AnimeCollectionVisibility
         {
-            get => _CurrentView;
-            set => Set(ref _CurrentView, value);
+            get => _AnimeCollectionVisibility;
+            set => Set(ref _AnimeCollectionVisibility, value);
         }
         #endregion
 
-        #region _SelecteAnimeTitle : AnimeTitle - выбранный аниме тайтл
+        #region ExactAnimeTitleVisibility : Visibility
+        private Visibility _ExactAnimeTitleVisibility;
+        public Visibility ExactAnimeTitleVisibility
+        {
+            get => _ExactAnimeTitleVisibility;
+            set => Set(ref _ExactAnimeTitleVisibility, value);
+        }
+        #endregion
+
+        #region SelecteAnimeTitle : AnimeTitle - выбранный аниме тайтл
         private AnimeTitle _SelectedAnimeTitle;
         public AnimeTitle SelectedAnimeTitle
         {
@@ -103,7 +121,11 @@ namespace AniRateV1.ViewModels
         private bool CanExactAnimeTitleCommandExecute(object p) => true;
         private void OnExactAnimeTitleCommandExecuted(object p)
         {
-            CurrentView = ExactAnimeTitleVM;
+            if (!(p is AnimeTitle title)) return;
+            SelectedAnimeTitle = title;
+            ExactAnimeTitleVisibility = Visibility.Visible;
+            AnimeCollectionVisibility = Visibility.Collapsed;
+            //CurrentViewModel = ExactAnimeTitleVM;
         }
         #endregion
 
@@ -112,7 +134,11 @@ namespace AniRateV1.ViewModels
         private bool CanCollectionCommandExecute(object p) => true;
         private void OnCollectionCommandExecuted(object p)
         {
-            CurrentView = new CollectionViewModel(SelectedAnimeCollection);
+            if (!(p is AnimeCollection collection)) return;
+            SelectedAnimeCollection = collection;
+            ExactAnimeTitleVisibility = Visibility.Collapsed;
+            AnimeCollectionVisibility = Visibility.Visible;
+            //CurrentViewModel = new CollectionViewModel();
             //CurrentView = CollectionVM;
         }
         #endregion
@@ -190,13 +216,14 @@ namespace AniRateV1.ViewModels
 
 
 
+            ExactAnimeTitleVisibility = Visibility.Collapsed;
+            AnimeCollectionVisibility = Visibility.Visible;
 
-
-            CollectionVM = new CollectionViewModel(SelectedAnimeCollection);
+            //CollectionVM = new CollectionViewModel();
             ////CollectionVM = new CollectionViewModel();
-            CurrentView = CollectionVM;
+            //CurrentViewModel = CollectionVM;
 
-            ExactAnimeTitleVM = new ExactAnimeTitleViewModel();
+            //ExactAnimeTitleVM = new ExactAnimeTitleViewModel();
 
             ExactAnimeTitleCommand = new LambdaCommand(OnExactAnimeTitleCommandExecuted, CanExactAnimeTitleCommandExecute);
             CollectionCommand = new LambdaCommand(OnCollectionCommandExecuted, CanCollectionCommandExecute);
