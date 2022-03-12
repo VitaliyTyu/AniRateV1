@@ -140,7 +140,9 @@ namespace AniRateV1.ViewModels
                 {
                     collection.AnimeTitles.Add(SelectedAnimeTitle);
                 }
+                collection.IsSelected = false;
             }
+             
         }
         #endregion
 

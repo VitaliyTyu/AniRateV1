@@ -24,5 +24,10 @@ namespace AniRateV1.Views.UserControls
         {
             InitializeComponent();
         }
+
+        public void ChooseingCollectionsListBox_Unselected(object sender, RoutedEventArgs e)
+        {
+            ChooseingCollectionsListBox.UnselectAll();
+        }
     }
 }
