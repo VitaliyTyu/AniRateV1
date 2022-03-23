@@ -16,9 +16,8 @@ namespace AniRateV1.ViewModels
     internal class MainWindowViewModel : ViewModel
     {
         public static Random Rnd { get; set; } = new Random();
-        //public ObservableCollection<AnimeCollection> AnimeCollections { get; }
-        public ExactAnimeTitleViewModel ExactAnimeTitleVM { get; set; }
-        public CollectionViewModel CollectionVM { get; set; }
+        private readonly ExactAnimeTitleViewModel _ExactAnimeTitleViewModel;
+        private readonly CollectionViewModel _CollectionViewModel;
 
 
         #region Fields
@@ -30,37 +29,15 @@ namespace AniRateV1.ViewModels
             get => _AnimeCollections;
             set => Set(ref _AnimeCollections, value);
         }
+
         #endregion
 
-
-        //#region ExactAnimeCollection : ObservableCollection<AnimeCollection>
-        //private AnimeCollection _ExactAnimeCollection;
-        //public AnimeCollection ExactAnimeCollection
-        //{
-        //    get => _ExactAnimeCollection;
-        //    set
-        //    {
-        //        var selectedItems = AnimeCollections.Where(x => x.IsSelected).Count();
-        //        Set(ref _ExactAnimeCollection, value);
-        //    }
-        //}
-        //#endregion
-
-        #region AnimeCollectionVisibility : Visibility
-        private Visibility _AnimeCollectionVisibility;
-        public Visibility AnimeCollectionVisibility
+        #region CurrentView : ViewModel - VM для текущего UserControl'a
+        private ViewModel _CurrentView;
+        public ViewModel CurrentView
         {
-            get => _AnimeCollectionVisibility;
-            set => Set(ref _AnimeCollectionVisibility, value);
-        }
-        #endregion
-
-        #region ExactAnimeTitleVisibility : Visibility
-        private Visibility _ExactAnimeTitleVisibility;
-        public Visibility ExactAnimeTitleVisibility
-        {
-            get => _ExactAnimeTitleVisibility;
-            set => Set(ref _ExactAnimeTitleVisibility, value);
+            get => _CurrentView;
+            set => Set(ref _CurrentView, value);
         }
         #endregion
 
@@ -69,7 +46,11 @@ namespace AniRateV1.ViewModels
         public AnimeTitle SelectedAnimeTitle
         {
             get => _SelectedAnimeTitle;
-            set => Set(ref _SelectedAnimeTitle, value);
+            set
+            {
+                Set(ref _SelectedAnimeTitle, value);
+                _ExactAnimeTitleViewModel.SelectedAnimeTitle = value;
+            }
         }
         #endregion
 
@@ -78,11 +59,15 @@ namespace AniRateV1.ViewModels
         public AnimeCollection SelectedAnimeCollection
         {
             get => _SelectedAnimeCollection;
-            set => Set(ref _SelectedAnimeCollection, value);
+            set
+            {
+                Set(ref _SelectedAnimeCollection, value);
+                _CollectionViewModel.SelectedAnimeCollection = value;
+            }
         }
         #endregion
 
-        #region AnimeTitleFilterText : string - Текст фильтра студентов
+        #region AnimeTitleFilterText : string - Текст фильтра
         private string _AnimeTitleFilterText;
         public string AnimeTitleFilterText
         {
@@ -98,6 +83,7 @@ namespace AniRateV1.ViewModels
 
         #region SelecteAnimeCollectionOfTitles : ICollectionView - выбранная коллекция
         readonly CollectionViewSource _SelecteAnimeCollectionOfTitles = new CollectionViewSource();
+
         public ICollectionView SelecteAnimeCollectionOfTitles => _SelecteAnimeCollectionOfTitles?.View;
 
         private void OnStudentFiltered(object sender, FilterEventArgs e)
@@ -153,9 +139,7 @@ namespace AniRateV1.ViewModels
         {
             if (!(p is AnimeTitle title)) return;
             SelectedAnimeTitle = title;
-            ExactAnimeTitleVisibility = Visibility.Visible;
-            AnimeCollectionVisibility = Visibility.Collapsed;
-            //CurrentViewModel = ExactAnimeTitleVM;
+            CurrentView = _ExactAnimeTitleViewModel;
         }
         #endregion
 
@@ -166,10 +150,7 @@ namespace AniRateV1.ViewModels
         {
             if (!(p is AnimeCollection collection)) return;
             SelectedAnimeCollection = collection;
-            ExactAnimeTitleVisibility = Visibility.Collapsed;
-            AnimeCollectionVisibility = Visibility.Visible;
-            //CurrentViewModel = new CollectionViewModel();
-            //CurrentView = CollectionVM;
+            CurrentView = _CollectionViewModel;
         }
         #endregion
 
@@ -213,6 +194,7 @@ namespace AniRateV1.ViewModels
 
         #region DeleteAnimeCollection
         public ICommand DeleteAnimeCollection { get; }
+
         private bool CanDeleteAnimeCollectionExecute(object p) => p is AnimeCollection group && AnimeCollections.Contains(group);
         private void OnDeleteAnimeCollectionExecuted(object p)
         {
@@ -226,7 +208,7 @@ namespace AniRateV1.ViewModels
 
         #endregion
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(CollectionViewModel collectionViewModel, ExactAnimeTitleViewModel exactAnimeTitleViewModel)
         {
             var titles = Enumerable.Range(1, 100).Select(i => new AnimeTitle
             {
@@ -244,21 +226,22 @@ namespace AniRateV1.ViewModels
             AnimeCollections = new ObservableCollection<AnimeCollection>(collections);
 
 
+            _CollectionViewModel = collectionViewModel;
+            _CollectionViewModel.MainWindowViewModel = this;
 
-            ExactAnimeTitleVisibility = Visibility.Collapsed;
-            AnimeCollectionVisibility = Visibility.Visible;
+            _ExactAnimeTitleViewModel = exactAnimeTitleViewModel;
+            _ExactAnimeTitleViewModel.MainWindowViewModel = this;
 
-            //CollectionVM = new CollectionViewModel();
-            ////CollectionVM = new CollectionViewModel();
-            //CurrentViewModel = CollectionVM;
+            CurrentView = collectionViewModel;
 
-            //ExactAnimeTitleVM = new ExactAnimeTitleViewModel();
+
 
             ExactAnimeTitleCommand = new LambdaCommand(OnExactAnimeTitleCommandExecuted, CanExactAnimeTitleCommandExecute);
             CollectionCommand = new LambdaCommand(OnCollectionCommandExecuted, CanCollectionCommandExecute);
             CreateNewCollection = new LambdaCommand(OnCreateNewCollectionExecuted, CanCreateNewCollectionExecute);
             DeleteAnimeCollection = new LambdaCommand(OnDeleteAnimeCollectionExecuted, CanDeleteAnimeCollectionExecute);
             AddAnimeToManyCollections = new LambdaCommand(OnAddAnimeToManyCollectionsExecuted, CanAddAnimeToManyCollectionsExecute);
+
         }
 
     }

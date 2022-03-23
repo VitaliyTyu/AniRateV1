@@ -7,8 +7,7 @@
              xmlns:local="clr-namespace:AniRateV1.Views.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid d:DataContext="{d:DesignInstance {x:Type vm:MainWindowViewModel}}">
-
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="4*"/>
@@ -28,8 +27,10 @@
             <Expander.Header>
                 <Button Content="Добавить в коллекцию:" Command="{Binding AddAnimeToManyCollections}"/> 
             </Expander.Header>
+            
+            <!--SelectedItem="{Binding Path=ExactAnimeCollection,UpdateSourceTrigger=PropertyChanged}" (убрано из листбокса)-->
+
             <ListBox x:Name="ChooseingCollectionsListBox" 
-                 SelectedItem="{Binding Path=ExactAnimeCollection,UpdateSourceTrigger=PropertyChanged}" 
                  ItemsSource="{Binding AnimeCollections, NotifyOnSourceUpdated=True}"
                  SelectionMode="Multiple"
                  BorderThickness="0"

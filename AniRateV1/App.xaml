@@ -7,14 +7,16 @@
              StartupUri="Views/Windows/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+
+            <vm:ViewModelLocator x:Key="Locator"/>
             
-            <!--<DataTemplate DataType="{x:Type vm:ExactAnimeTitleViewModel}">
+            <DataTemplate DataType="{x:Type vm:ExactAnimeTitleViewModel}">
                 <userCtrl:ExactAnimeTitleView />
             </DataTemplate>
 
             <DataTemplate DataType="{x:Type vm:CollectionViewModel}">
                 <userCtrl:CollectionView />
-            </DataTemplate>-->
+            </DataTemplate>
 
 
             <ResourceDictionary.MergedDictionaries>

@@ -5,23 +5,41 @@ using System.Windows.Input;
 
 namespace AniRateV1.ViewModels
 {
+
     internal class CollectionViewModel : ViewModel
     {
-        //public AnimeCollection AnimeCollection { get; set; }
+        public MainWindowViewModel MainWindowViewModel { get; internal set; }
 
+        #region SelectedAnimeCollection : AnimeCollection - выбранная аниме коллекция
+        private AnimeCollection _SelectedAnimeCollection;
+        public AnimeCollection SelectedAnimeCollection
+        {
+            get => _SelectedAnimeCollection;
+            set
+            {
+                Set(ref _SelectedAnimeCollection, value);
+            }
+        }
+        #endregion
 
-        //#region _SelecteAnimeTitle : AnimeTitle - выбранный аниме тайтл
-        //private AnimeTitle _SelectedAnimeTitle;
-        //public AnimeTitle SelectedAnimeTitle
-        //{
-        //    get => _SelectedAnimeTitle;
-        //    set => Set(ref _SelectedAnimeTitle, value);
-        //}
-        //#endregion
+        #region SelecteAnimeTitle : AnimeTitle - выбранный аниме тайтл
+        private AnimeTitle _SelectedAnimeTitle;
+        public AnimeTitle SelectedAnimeTitle
+        {
+            get => _SelectedAnimeTitle;
+            set
+            {
+                Set(ref _SelectedAnimeTitle, value);
+                MainWindowViewModel.SelectedAnimeTitle = value;
+            }
+        }
+        #endregion
 
-        //public CollectionViewModel(AnimeCollection selectedAnimeCollection)
-        //{
-        //    AnimeCollection = selectedAnimeCollection;
-        //}
+        public ICommand ExactAnimeTitleCommand => MainWindowViewModel.ExactAnimeTitleCommand;
+
+        public CollectionViewModel()
+        {
+
+        }
     }
 }
