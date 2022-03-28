@@ -1,4 +1,4 @@
-﻿using AniRateV1.Models;
+﻿using AniRateV1.DAL.Entities;
 using AniRateV1.ViewModels.Base;
 using System;
 using System.Collections.Generic;

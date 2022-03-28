@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AniRateV1"
         xmlns:vm="clr-namespace:AniRateV1.ViewModels"
-        xmlns:models="clr-namespace:AniRateV1.Models"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:userCtrl="clr-namespace:AniRateV1.Views.UserControls"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"

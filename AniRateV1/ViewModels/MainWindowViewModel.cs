@@ -6,10 +6,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using AniRateV1.DAL.Entities;
 using AniRateV1.Infrostructure.Commands;
-using AniRateV1.Models;
 using AniRateV1.ViewModels.Base;
-    using AniRateV1.Views.Windows;
+using AniRateV1.Views.Windows;
 
 namespace AniRateV1.ViewModels
 {
@@ -120,14 +120,14 @@ namespace AniRateV1.ViewModels
         private bool CanAddAnimeToManyCollectionsExecute(object p) => true;
         private void OnAddAnimeToManyCollectionsExecuted(object p)
         {
-            foreach (var collection in AnimeCollections)
-            {
-                if (collection.IsSelected && SelectedAnimeTitle != null && !collection.AnimeTitles.Contains(SelectedAnimeTitle))
-                {
-                    collection.AnimeTitles.Add(SelectedAnimeTitle);
-                }
-                collection.IsSelected = false;
-            }
+            //foreach (var collection in AnimeCollections)
+            //{
+            //    if (collection.IsSelected && SelectedAnimeTitle != null && !collection.AnimeTitles.Contains(SelectedAnimeTitle))
+            //    {
+            //        collection.AnimeTitles.Add(SelectedAnimeTitle);
+            //    }
+            //    collection.IsSelected = false;
+            //}
              
         }
         #endregion
@@ -210,20 +210,20 @@ namespace AniRateV1.ViewModels
 
         public MainWindowViewModel(CollectionViewModel collectionViewModel, ExactAnimeTitleViewModel exactAnimeTitleViewModel)
         {
-            var titles = Enumerable.Range(1, 100).Select(i => new AnimeTitle
-            {
-                Name = $"Тайтл {Rnd.Next(1000)}",
-                Description = $"Description {i}",
-                Rating = i,
-            });
+            //var titles = Enumerable.Range(1, 100).Select(i => new AnimeTitle
+            //{
+            //    Name = $"Тайтл {Rnd.Next(1000)}",
+            //    Description = $"Description {i}",
+            //    Rating = i,
+            //});
 
-            var collections = Enumerable.Range(1, 10).Select(i => new AnimeCollection
-            {
-                Name = $"Коллекция {i}",
-                AnimeTitles = new ObservableCollection<AnimeTitle>(titles),
-            });
+            //var collections = Enumerable.Range(1, 10).Select(i => new AnimeCollection
+            //{
+            //    Name = $"Коллекция {i}",
+            //    AnimeTitles = new ObservableCollection<AnimeTitle>(titles),
+            //});
 
-            AnimeCollections = new ObservableCollection<AnimeCollection>(collections);
+            //AnimeCollections = new ObservableCollection<AnimeCollection>(collections);
 
 
             _CollectionViewModel = collectionViewModel;

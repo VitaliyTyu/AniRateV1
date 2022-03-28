@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AniRateV1", "AniRateV1\AniRateV1.csproj", "{16EAF2D4-3669-4BBF-A7B5-5B115F630BF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AniRateV1", "AniRateV1\AniRateV1.csproj", "{16EAF2D4-3669-4BBF-A7B5-5B115F630BF6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AniRateV1.DAL", "AniRateV1.DAL\AniRateV1.DAL.csproj", "{1BDD86B7-AA3B-45DD-BA87-B8829D366FB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AniRateV1.Interfaces", "AniRateV1.Interfaces\AniRateV1.Interfaces.csproj", "{F433CE23-5117-4116-BA5C-2C4623108CA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{16EAF2D4-3669-4BBF-A7B5-5B115F630BF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16EAF2D4-3669-4BBF-A7B5-5B115F630BF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16EAF2D4-3669-4BBF-A7B5-5B115F630BF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BDD86B7-AA3B-45DD-BA87-B8829D366FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BDD86B7-AA3B-45DD-BA87-B8829D366FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BDD86B7-AA3B-45DD-BA87-B8829D366FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BDD86B7-AA3B-45DD-BA87-B8829D366FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F433CE23-5117-4116-BA5C-2C4623108CA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F433CE23-5117-4116-BA5C-2C4623108CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F433CE23-5117-4116-BA5C-2C4623108CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F433CE23-5117-4116-BA5C-2C4623108CA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
